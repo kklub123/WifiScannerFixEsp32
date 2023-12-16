@@ -46,6 +46,7 @@ wifi_country_t config = {
 ///################################################################## </WIFI CONFIGS>
 
 void setup() {
+  Serial.begin(115200);
   Serial.printf("Setup start\n");
   wifiInit();
   Serial.printf("Setup done\n");
