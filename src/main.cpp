@@ -9,18 +9,13 @@
 #include "esp_event.h"
 
 #define MAXIMUM_AP 20
-/*
-static esp_err_t event_handler(void * ctx, system_event_t *event) {
-  return ESP_OK;
-}
-*/
 
-/*
-static char *auth_mode_type(wifi_auth_mode_t auth_mode)
+
+static const char *auth_mode_type(wifi_auth_mode_t auth_mode)
 {
   const char* types[] = {"OPEN", "WEP", "WPA PSK", "WPA2 PSK", "WPA WPA2 PSK", "MAX"};
   return types[auth_mode];
-}*/
+}
 
 void wifiInit() { //First Called function
   ESP_ERROR_CHECK(nvs_flash_init());
@@ -85,7 +80,7 @@ void loop()
     Serial.printf("NO NETWORKS FOUND!\n");
   }else{ 
     for (int i = 0; i < max_records; i++){
-      Serial.printf("%32s | %7d | %4d | %12s\n", (char *)wifi_records[i].ssid, wifi_records[i].primary, wifi_records[i].rssi,"\n"); //, auth_mode_type(wifi_records[i].authmode));
+      Serial.printf("%32s | %7d | %4d | %12s\n", (char *)wifi_records[i].ssid, wifi_records[i].primary, wifi_records[i].rssi, auth_mode_type(wifi_records[i].authmode),"\n");
     }
   }
   Serial.printf("***************************************************************\n");
